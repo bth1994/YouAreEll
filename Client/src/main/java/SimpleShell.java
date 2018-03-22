@@ -99,42 +99,7 @@ public class SimpleShell {
                     continue;
                 }
 
-                if(list.contains("send") && list.size() > 2 && !list.get(list.size() - 2).equals("to")) {
-                    StringBuilder message = new StringBuilder();
-                    String github = list.get(1);
-                    for(int i = 2; i < list.size(); i++) {
-                        if(i == 2) {
-                            message.append(list.get(i).substring(1) + " ");
-                        } else if(i == list.size() - 1) {
-                            message.append(list.get(i).substring(0, list.get(i).length() - 1));
-                        } else {
-                            message.append(list.get(i) + " ");
-                        }
-                    }
-                    Message messageToSend = new Message(list.get(1), message.toString(), "");
-                    String messageToString = objectMapper.writeValueAsString(messageToSend);
-                    webber.MakeURLCall("/ids/" + github + "/messages", "POST", messageToString);
-                    continue;
-                }
-
-                if(list.contains("send") && list.get(list.size() - 2).equals("to")) {
-                    StringBuilder message = new StringBuilder();
-                    String fromid = list.get(1);
-                    String toid = list.get(list.size() - 1);
-                    for (int i = 2; i < list.size() - 2; i++) {
-                        if (i == 2) {
-                            message.append(list.get(i).substring(1) + " ");
-                        } else if (i == list.size() - 3) {
-                            message.append(list.get(i).substring(0, list.get(i).length() - 1));
-                        } else {
-                            message.append(list.get(i) + " ");
-                        }
-                    }
-                    Message messageToSend = new Message(toid, message.toString(), fromid);
-                    String messageToString = objectMapper.writeValueAsString(messageToSend);
-                    webber.MakeURLCall("/ids/" + toid + "/messages", "POST", messageToString);
-                    continue;
-                }
+                if(list.contains("send") && list.size() > 2 && !list.get(list.size() - 2).equals("to")) { StringBuilder message = new StringBuilder();String github = list.get(1);for(int i = 2; i < list.size(); i++) { if(i == 2) { message.append(list.get(i).substring(1) + " "); } else if(i == list.size() - 1) { message.append(list.get(i).substring(0, list.get(i).length() - 1)); } else { message.append(list.get(i) + " "); } }Message messageToSend = new Message(list.get(1), message.toString(), "");String messageToString = objectMapper.writeValueAsString(messageToSend);webber.MakeURLCall("/ids/" + github + "/messages", "POST", messageToString);continue; }if(list.contains("send") && list.get(list.size() - 2).equals("to")) { StringBuilder message = new StringBuilder();String fromid = list.get(1);String toid = list.get(list.size() - 1);for (int i = 2; i < list.size() - 2; i++) { if (i == 2) { message.append(list.get(i).substring(1) + " "); } else if (i == list.size() - 3) { message.append(list.get(i).substring(0, list.get(i).length() - 1)); } else { message.append(list.get(i) + " "); } }Message messageToSend = new Message(toid, message.toString(), fromid);String messageToString = objectMapper.writeValueAsString(messageToSend);webber.MakeURLCall("/ids/" + toid + "/messages", "POST", messageToString);continue; }
 
                 //!! command returns the last command in history
                 if (list.get(list.size() - 1).equals("!!")) {
