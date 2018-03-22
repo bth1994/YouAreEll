@@ -1,16 +1,23 @@
 public class Message {
+
     private String sequence;
-    private String timeStamp;
-    private String fromId;
-    private String toId;
+    private String timestamp;
+    private String fromid;
+    private String toid;
     private String message;
 
-    public Message (String sequence, String timeStamp, String fromId, String toId, String message) {
+    public Message(String sequence, String timeStamp, String fromId, String toId, String message) {
         this.sequence = sequence;
-        this.timeStamp = timeStamp;
-        this.fromId = fromId;
-        this.toId = toId;
+        this.timestamp = timeStamp;
+        this.fromid = fromId;
+        this.toid = toId;
         this.message = message;
+    }
+
+    public Message(String toId, String message, String fromId) {
+        this.toid = toId;
+        this.message = message;
+        this.fromid = fromId;
     }
 
     public String getSequence() {
@@ -22,27 +29,27 @@ public class Message {
     }
 
     public String getTimeStamp() {
-        return timeStamp;
+        return timestamp;
     }
 
     public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+        this.timestamp = timeStamp;
     }
 
     public String getFromId() {
-        return fromId;
+        return fromid;
     }
 
     public void setFromId(String fromId) {
-        this.fromId = fromId;
+        this.fromid = fromId;
     }
 
     public String getToId() {
-        return toId;
+        return toid;
     }
 
     public void setToId(String toId) {
-        this.toId = toId;
+        this.toid = toId;
     }
 
     public String getMessage() {
