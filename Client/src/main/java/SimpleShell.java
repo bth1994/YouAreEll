@@ -99,7 +99,7 @@ public class SimpleShell {
                     continue;
                 }
 
-                if(list.contains("send") && list.size() > 2 && !list.get(list.size() - 2).equals("to")) {
+                if(list.contains("send") && list.size() > 2 && !list.get(list.size() - 2).equals("to") && !list.get(list.size() - 3).contains("\'")) {
                     StringBuilder message = new StringBuilder();
                     String github = list.get(1);
                     for(int i = 2; i < list.size(); i++) {
@@ -116,7 +116,7 @@ public class SimpleShell {
                     webber.MakeURLCall("/ids/" + github + "/messages", "POST", messageToString);
                     continue;
                 }
-                if(list.contains("send") && list.get(list.size() - 2).equals("to")) {
+                if(list.contains("send") && list.get(list.size() - 2).equals("to") && list.get(list.size() - 3).contains("\'")) {
                     StringBuilder message = new StringBuilder();
                     String fromid = list.get(1);
                     String toid = list.get(list.size() - 1);
@@ -149,7 +149,12 @@ public class SimpleShell {
                 }
 
                 // wait, wait, what curiousness is this?
-                Process process = pb.start();
+                Process process = null;
+                try {
+                    process = pb.start();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
 
                 //obtain the input stream
                 InputStream is = process.getInputStream();
